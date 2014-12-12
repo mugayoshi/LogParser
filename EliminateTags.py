@@ -38,6 +38,8 @@ def filter(line, argID):
     
 def  makeSentence(line):
     if line.find('Modify'):
+        if (line.find('ID') == -1 and line.find('CLASS') == -1):
+            return ''
         arry = line.split(':')
         hasID = 0
         method_top = 0
