@@ -4,38 +4,7 @@ import os
 
 import re
 import string
-def filter(line, argID):
-  
-    if line.find('Modify'):
-        arry = line.split(':')
-        hasID = 0
-        method_top = 0
-        log = ''
-        ID = 0
-        string = []
-        for x in arry:
-            
-            if x.find('ID') != -1:
-                hasID = 1
-
-            elif x.find('CLASS') != -1:
-                method_top = 1;
-                              
-            if (hasID == 1 or method_top == 1):
-                log += x
-                
-        if (hasID == 1):
-            ID = log[1]
-    
-        string = log.split(" ")
-
-        if len(log) > 1:
-    
-            print(log.strip())
-            return ID
-    else:
-        return '0'
-    
+   
 def  makeSentence(line):
     if line.find('Modify'):
         if (line.find('ID') == -1 and line.find('CLASS') == -1):
@@ -86,11 +55,15 @@ def main():
                 break
             
     f = open(file)
+    print("Enter Output File Name:")
+    output_file = raw_input()
+    output = open(output_file, 'w')
+
+    print("Writing Start!")
     line = f.readline()
     IDs = []
 
     while line:
-        #ID = filter(line, ID)
         tab_str = ''
         log = makeSentence(line)
         if len(log) > 1:
@@ -100,13 +73,15 @@ def main():
             for i in range(len(IDs)):
                 tab_str += '\t'
                 
-            print(tab_str + log)
+            output.write(tab_str + log)
+
             if tag == 'After':
                 if checkID(IDs, ID) == 1:
                     IDs.remove(ID)
            
         line = f.readline()
     f.close
+    print("Writing Done!")
 
 if __name__ == "__main__":
     main()
