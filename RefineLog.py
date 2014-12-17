@@ -32,8 +32,7 @@ def  makeSentence(line):
 def getIDAndTag(line):
     log = []
     log = line.split()
-#    print(log)
-    ID = log[0]
+    ID = log[1]
     tag = log[2]
     return (ID, tag)
 
