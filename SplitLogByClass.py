@@ -143,7 +143,7 @@ def main():
 
     f.close
 
-    date = time.strftime("%H_%M_%d_%m_%Y")
+    date = time.strftime("%d_%m_%H_%M_%Y")
     newDirPath = os.getcwd() + "/SplitByClass_" + date
     os.mkdir(newDirPath, 0755)
     for x in outputs:
